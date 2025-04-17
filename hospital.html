@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Services - ChikitSeva</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+        }
+
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: #3498db;
+        }
+
+        main {
+            margin-top: 80px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2rem;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="rgba(255,255,255,0.1)" d="M0 0h100v100H0z"/></svg>');
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .hero-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero-feature-item i {
+            font-size: 1.2rem;
+        }
+
+        .hero-cta {
+            background-color: white;
+            color: #2c3e50;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-features {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .feature-section {
+            margin: 3rem 0;
+        }
+
+        .feature-section h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .feature-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #3498db;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 2rem;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .service-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .service-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .service-card button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .service-card button:hover {
+            background-color: #2980b9;
+        }
+
+        .specialty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .specialty-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .specialty-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            background-color: #f8f9fa;
+        }
+
+        .specialty-item h3 {
+            color: #2c3e50;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            color: #666;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            color: #3498db;
+            position: absolute;
+            left: 0;
+        }
+
+        .specialty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ChikitSeva</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="hospital.html" class="active">Hospital Services</a></li>
+                <li><a href="#">Patient Services</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Comprehensive Hospital Management Solutions</h1>
+                <p class="hero-subtitle">Empowering healthcare providers with advanced technology and streamlined operations</p>
+                <div class="hero-features">
+                    <div class="hero-feature-item">
+                        <i class="fas fa-hospital"></i>
+                        <span>Hospital Management</span>
+                    </div>
+                    <div class="hero-feature-item">
+                        <i class="fas fa-user-md"></i>
+                        <span>Doctor Portal</span>
+                    </div>
+                    <div class="hero-feature-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Analytics & Insights</span>
+                    </div>
+                </div>
+                <button class="hero-cta">Explore Services</button>
+            </div>
+        </section>
+
+        <section class="feature-section">
+            <h2>Video Consultation</h2>
+            <div class="service-card">
+                <h3>Virtual Healthcare</h3>
+                <p>Connect with doctors from the comfort of your home through secure video calls</p>
+                <button onclick="location.href='#video-consult'">Start Consultation</button>
+            </div>
+        </section>
+
+        <section class="feature-section">
+            <h2>Hospital & Clinic Management</h2>
+            <div class="specialty-grid">
+                <div class="service-card">
+                    <h3>Appointment Management</h3>
+                    <p>Efficiently manage doctor schedules, patient appointments, and waiting lists</p>
+                    <ul class="feature-list">
+                        <li>Automated scheduling system</li>
+                        <li>Real-time availability updates</li>
+                        <li>Waitlist management</li>
+                        <li>Reminder notifications</li>
+                    </ul>
+                    <button onclick="location.href='#appointment-mgmt'">Learn More</button>
+                </div>
+
+                <div class="service-card">
+                    <h3>Patient Records Management</h3>
+                    <p>Secure and organized digital management of patient medical records</p>
+                    <ul class="feature-list">
+                        <li>Digital health records</li>
+                        <li>Secure cloud storage</li>
+                        <li>Easy access and sharing</li>
+                        <li>Compliance with regulations</li>
+                    </ul>
+                    <button onclick="location.href='#records-mgmt'">Learn More</button>
+                </div>
+
+                <div class="service-card">
+                    <h3>Billing & Insurance</h3>
+                    <p>Streamlined billing processes and insurance claim management</p>
+                    <ul class="feature-list">
+                        <li>Automated billing system</li>
+                        <li>Insurance claim processing</li>
+                        <li>Payment tracking</li>
+                        <li>Financial reporting</li>
+                    </ul>
+                    <button onclick="location.href='#billing'">Learn More</button>
+                </div>
+
+                <div class="service-card">
+                    <h3>Real-time Analytics</h3>
+                    <p>Comprehensive analytics and reporting for better decision making</p>
+                    <ul class="feature-list">
+                        <li>Patient flow analysis</li>
+                        <li>Revenue tracking</li>
+                        <li>Performance metrics</li>
+                        <li>Custom reports</li>
+                    </ul>
+                    <button onclick="location.href='#analytics'">Learn More</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-section">
+            <h2>For Independent Doctors</h2>
+            <div class="specialty-grid">
+                <div class="service-card">
+                    <h3>Appointment View</h3>
+                    <p>Manage your daily schedule and patient appointments efficiently</p>
+                    <ul class="feature-list">
+                        <li>Daily schedule view</li>
+                        <li>Patient history</li>
+                        <li>Appointment reminders</li>
+                        <li>Calendar integration</li>
+                    </ul>
+                    <button onclick="location.href='#doctor-appointments'">Learn More</button>
+                </div>
+
+                <div class="service-card">
+                    <h3>Health Insights</h3>
+                    <p>Access to medical research and patient health analytics</p>
+                    <ul class="feature-list">
+                        <li>Medical research database</li>
+                        <li>Patient health trends</li>
+                        <li>Treatment recommendations</li>
+                        <li>Case studies</li>
+                    </ul>
+                    <button onclick="location.href='#health-insights'">Learn More</button>
+                </div>
+
+                <div class="service-card">
+                    <h3>Patient Feedback</h3>
+                    <p>Collect and manage patient reviews and feedback</p>
+                    <ul class="feature-list">
+                        <li>Review management</li>
+                        <li>Patient satisfaction surveys</li>
+                        <li>Rating system</li>
+                        <li>Feedback analysis</li>
+                    </ul>
+                    <button onclick="location.href='#feedback'">Learn More</button>
+                </div>
+
+                <div class="service-card">
+                    <h3>In-App Messaging</h3>
+                    <p>Secure communication platform for doctor-patient interaction</p>
+                    <ul class="feature-list">
+                        <li>Secure messaging</li>
+                        <li>File sharing</li>
+                        <li>Prescription sharing</li>
+                        <li>Group chats</li>
+                    </ul>
+                    <button onclick="location.href='#messaging'">Learn More</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 ChikitSeva. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
